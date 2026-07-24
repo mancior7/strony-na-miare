@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URBIS — sklep odzieżowy online</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">Darmowa dostawa od 199 zł · Zwrot do 30 dni</div>
+
+<header>
+  <nav>
+    <ul class="nav-left">
+      <li><a href="kobieta.html">Kobieta</a></li>
+      <li><a href="mezczyzna.html">Mężczyzna</a></li>
+      <li><a href="index.html" class="active">Nowości</a></li>
+      <li><a href="#" style="color:var(--accent);">Wyprzedaż</a></li>
+    </ul>
+    <a href="index.html" class="logo">URBIS</a>
+    <div class="nav-right">
+      <a href="#" title="Szukaj">🔍</a>
+      <a href="#" title="Ulubione">♡</a>
+      <a href="#" title="Konto">👤</a>
+      <a href="#" title="Koszyk">🛍<span class="cart-badge">2</span></a>
+    </div>
+    <button class="burger">☰</button>
+  </nav>
+</header>
+
+<div class="promo-strip">
+  <strong>Wyprzedaż sezonowa — do −50%</strong>
+  <a href="kobieta.html">Kobieta »</a>
+  <a href="mezczyzna.html">Mężczyzna »</a>
+</div>
+
+<section class="hero" style="padding:0;">
+  <img src="../_assets/fashion/hero-campaign.jpg" alt="Nowa kolekcja URBIS">
+  <div class="hero-content">
+    <div class="hero-tag">Nowa kolekcja</div>
+    <h1>Sezon, który definiujesz sam</h1>
+    <a href="kobieta.html" class="btn-primary">Zobacz kolekcję</a>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Zakupy według kategorii</h2>
+  </div>
+  <div class="cat-grid">
+    <a class="cat-tile" href="kobieta.html">
+      <img src="../_assets/fashion/category-women.jpg" alt="Kolekcja damska">
+      <div class="cat-label"><div class="name">Kobieta</div><div class="link">Zobacz kolekcję »</div></div>
+    </a>
+    <a class="cat-tile" href="mezczyzna.html">
+      <img src="../_assets/fashion/category-men.jpg" alt="Kolekcja męska">
+      <div class="cat-label"><div class="name">Mężczyzna</div><div class="link">Zobacz kolekcję »</div></div>
+    </a>
+    <a class="cat-tile" href="kobieta.html">
+      <img src="../_assets/fashion/category-outerwear.jpg" alt="Okrycia wierzchnie">
+      <div class="cat-label"><div class="name">Okrycia wierzchnie</div><div class="link">Zobacz kolekcję »</div></div>
+    </a>
+  </div>
+</section>
+
+<section style="background:var(--bg-soft);">
+  <div class="section-head">
+    <h2>Bestsellery</h2>
+    <a href="kobieta.html">Zobacz wszystkie »</a>
+  </div>
+  <div class="product-grid">
+    <a class="product-card" href="produkt.html">
+      <div class="product-media">
+        <span class="sale-tag">−20%</span>
+        <button class="wishlist-btn">♡</button>
+        <img class="img-front" src="../_assets/fashion/hero-shopping.jpg" alt="Płaszcz wełniany bordowy">
+        <img class="img-back" src="../_assets/fashion/category-outerwear.jpg" alt="Płaszcz wełniany bordowy — tył">
+        <span class="add-to-cart">Dodaj do koszyka</span>
+      </div>
+      <div class="product-info">
+        <div class="name">Płaszcz wełniany bordowy</div>
+        <div class="price"><span class="old">349 zł</span><span class="sale">279 zł</span></div>
+      </div>
+    </a>
+    <a class="product-card" href="produkt.html">
+      <div class="product-media">
+        <button class="wishlist-btn">♡</button>
+        <img class="img-front" src="../_assets/fashion/category-women.jpg" alt="Bluzka lniana kremowa">
+        <img class="img-back" src="../_assets/fashion/product-flatlay.jpg" alt="Bluzka lniana kremowa — detal">
+        <span class="add-to-cart">Dodaj do koszyka</span>
+      </div>
+      <div class="product-info">
+        <div class="name">Bluzka lniana kremowa</div>
+        <div class="price">129 zł</div>
+      </div>
+    </a>
+    <a class="product-card" href="produkt.html">
+      <div class="product-media">
+        <span class="sale-tag">Nowość</span>
+        <button class="wishlist-btn">♡</button>
+        <img class="img-front" src="../_assets/fashion/product-streetwear.jpg" alt="Dres oversize żółty">
+        <img class="img-back" src="../_assets/fashion/category-women.jpg" alt="Dres oversize żółty — detal">
+        <span class="add-to-cart">Dodaj do koszyka</span>
+      </div>
+      <div class="product-info">
+        <div class="name">Dres oversize żółty</div>
+        <div class="price">199 zł</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="newsletter">
+  <h2>Rabat 10% na pierwsze zakupy</h2>
+  <p>Zapisz się do newslettera i bądź na bieżąco z nowościami, promocjami i wyprzedażami.</p>
+  <form class="newsletter-form" onsubmit="event.preventDefault(); alert('To jest strona demonstracyjna — formularz nie wysyła wiadomości.');">
+    <input type="email" placeholder="Twój adres e-mail" required>
+    <button type="submit">Zapisz się</button>
+  </form>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>Obsługa klienta</h3>
+      <ul>
+        <li><a href="#">Kontakt</a></li>
+        <li><a href="#">Zwroty i reklamacje</a></li>
+        <li><a href="#">Dostawa i płatność</a></li>
+        <li><a href="#">Rozmiarówka</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>O firmie</h3>
+      <ul>
+        <li><a href="#">O nas</a></li>
+        <li><a href="#">Sklepy stacjonarne</a></li>
+        <li><a href="#">Kariera</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Social media</h3>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Płatności</h3>
+      <div class="payments">
+        <span class="pay-badge">Visa</span>
+        <span class="pay-badge">Mastercard</span>
+        <span class="pay-badge">BLIK</span>
+        <span class="pay-badge">Przelewy24</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 URBIS — przykładowa strona portfolio, demonstracja usług tworzenia stron internetowych.</span>
+  </div>
+</footer>
+
+</body>
+</html>

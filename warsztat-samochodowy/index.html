@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MotoFix — warsztat samochodowy</title>
+<style>
+  :root{
+    --asphalt:#1c1f24;
+    --asphalt-light:#2a2e35;
+    --orange:#e8622c;
+    --orange-light:#f28c5e;
+    --white:#f2f3f5;
+    --grey:#9aa2ad;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', system-ui, sans-serif;
+    background:var(--white);color:#22262b;
+    line-height:1.5;
+  }
+  h1,h2,h3{font-weight:800;letter-spacing:-0.5px;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  header{
+    background:var(--asphalt);color:var(--white);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{font-size:20px;font-weight:900;letter-spacing:1px;}
+  .logo span{color:var(--orange);}
+  .header-phone{font-size:14.5px;color:var(--grey);}
+  .header-phone b{color:var(--white);}
+  .nav-cta{background:var(--orange);color:#fff;padding:9px 18px;border-radius:4px;font-size:13.5px;font-weight:700;margin-left:16px;}
+
+  main{padding:36px 24px;}
+
+  /* BENTO GRID — the core layout, mixing tile sizes */
+  .bento{
+    display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:130px;gap:14px;
+    max-width:1180px;margin:0 auto 60px;
+  }
+  .tile{border-radius:12px;padding:24px;display:flex;flex-direction:column;justify-content:center;}
+
+  .b-headline{
+    grid-column:span 2;grid-row:span 2;
+    background:var(--asphalt);color:var(--white);justify-content:flex-end;
+  }
+  .b-headline .tag{color:var(--orange-light);font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+  .b-headline h1{font-size:30px;line-height:1.2;margin-bottom:14px;}
+  .b-headline p{color:var(--grey);font-size:14px;margin-bottom:18px;max-width:340px;}
+  .btn-primary{
+    display:inline-block;background:var(--orange);color:#fff;padding:12px 26px;border-radius:6px;
+    font-size:14px;font-weight:700;width:fit-content;transition:background .2s;
+  }
+  .btn-primary:hover{background:var(--orange-light);}
+
+  .b-visual{
+    grid-column:span 2;grid-row:span 2;
+    background:linear-gradient(135deg,var(--orange),#a8391a);
+    align-items:center;justify-content:center;font-size:80px;color:#fff;
+  }
+
+  .b-stat{background:var(--asphalt-light);color:var(--white);text-align:left;}
+  .b-stat b{font-size:26px;color:var(--orange-light);display:block;}
+  .b-stat span{font-size:12.5px;color:var(--grey);}
+
+  .b-quick{background:#e9ebee;justify-content:center;align-items:center;text-align:center;}
+  .b-quick .ic{font-size:26px;margin-bottom:6px;}
+  .b-quick span{font-size:13px;font-weight:700;}
+
+  .b-service-big{
+    grid-column:span 2;background:var(--asphalt);color:var(--white);
+  }
+  .b-service-big .ic{font-size:26px;margin-bottom:10px;}
+  .b-service-big h3{font-size:17px;margin-bottom:8px;}
+  .b-service-big p{font-size:13.5px;color:var(--grey);}
+
+  .b-service{background:#e9ebee;}
+  .b-service .ic{font-size:24px;margin-bottom:8px;}
+  .b-service h3{font-size:15px;margin-bottom:6px;}
+  .b-service p{font-size:12.5px;color:#5a6270;}
+
+  /* CENNIK — horizontal bar list, not cards */
+  .cennik-section{background:var(--asphalt);color:var(--white);padding:70px 24px;}
+  .section-tag{color:var(--orange-light);letter-spacing:3px;font-size:12px;text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+  .section-title{font-size:30px;margin-bottom:40px;}
+  .price-bars{display:flex;flex-direction:column;gap:20px;}
+  .price-bar-row{display:grid;grid-template-columns:220px 1fr 90px;align-items:center;gap:16px;}
+  .price-bar-row .name{font-size:14.5px;color:var(--grey);}
+  .price-bar-track{background:rgba(255,255,255,0.08);border-radius:6px;height:10px;overflow:hidden;}
+  .price-bar-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--orange-light));border-radius:6px;}
+  .price-bar-row .amount{text-align:right;font-weight:700;color:var(--orange-light);font-size:14.5px;}
+
+  /* KONTAKT */
+  .kontakt-section{padding:80px 24px;}
+  .kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:1180px;margin:0 auto;}
+  .map-tile{
+    background:var(--asphalt-light);border-radius:12px;min-height:280px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;color:var(--white);gap:10px;padding:24px;text-align:center;
+  }
+  .map-tile .pin{font-size:40px;}
+  .map-tile p{color:var(--grey);font-size:14px;}
+  form{background:#e9ebee;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:12px;}
+  input, textarea{
+    padding:13px 16px;border:1px solid #d3d7dc;border-radius:6px;font-size:14.5px;font-family:inherit;background:#fff;
+  }
+  textarea{resize:vertical;min-height:90px;}
+  form button{
+    background:var(--orange);color:#fff;border:none;padding:13px;border-radius:6px;
+    font-size:14.5px;font-weight:700;cursor:pointer;transition:background .2s;
+  }
+  form button:hover{background:var(--orange-light);}
+
+  footer{background:var(--asphalt);color:var(--grey);text-align:center;padding:26px 24px;font-size:13px;}
+  footer strong{color:var(--orange-light);}
+
+  @media (max-width:850px){
+    .bento{display:flex;flex-direction:column;}
+    .tile{border-radius:12px;}
+    .b-headline, .b-visual, .b-service-big{grid-column:unset;grid-row:unset;}
+    .price-bar-row{grid-template-columns:140px 1fr 70px;gap:10px;}
+    .kontakt-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:500px){
+    header{flex-wrap:wrap;gap:10px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">MOTO<span>FIX</span></div>
+  <div style="display:flex;align-items:center;">
+    <span class="header-phone">Zadzwoń: <b>+48 700 200 300</b></span>
+    <a href="#kontakt" class="nav-cta">Umów przegląd</a>
+  </div>
+</header>
+
+<main>
+  <div class="bento">
+    <div class="tile b-headline">
+      <div class="tag">Warsztat samochodowy</div>
+      <h1>Twoje auto w dobrych rękach</h1>
+      <p>Diagnostyka, naprawy mechaniczne, wymiana opon i przeglądy — szybko i rzetelnie, bez zbędnego czekania.</p>
+      <a href="#kontakt" class="btn-primary">Umów wizytę</a>
+    </div>
+    <div class="tile b-visual">🔧</div>
+
+    <div class="tile b-stat"><b>12 lat</b><span>doświadczenia na rynku</span></div>
+    <div class="tile b-stat"><b>3400+</b><span>napraw wykonanych</span></div>
+    <div class="tile b-quick"><div class="ic">🔍</div><span>Diagnostyka</span></div>
+    <div class="tile b-stat"><b>4.9★</b><span>średnia ocena klientów</span></div>
+
+    <div class="tile b-service-big">
+      <div class="ic">⚙️</div>
+      <h3>Mechanika ogólna</h3>
+      <p>Naprawy silnika, zawieszenia, układu hamulcowego i sprzęgła — od drobnych usterek po poważne naprawy.</p>
+    </div>
+    <div class="tile b-service">
+      <div class="ic">🛞</div>
+      <h3>Opony i koła</h3>
+      <p>Sezonowa wymiana, wyważanie, geometria.</p>
+    </div>
+    <div class="tile b-service">
+      <div class="ic">📋</div>
+      <h3>Przeglądy</h3>
+      <p>Przygotowanie do badania technicznego.</p>
+    </div>
+  </div>
+</main>
+
+<div class="cennik-section" id="cennik">
+  <div class="wrap">
+    <div class="section-tag">Cennik</div>
+    <h2 class="section-title">Przykładowe ceny usług</h2>
+    <div class="price-bars">
+      <div class="price-bar-row">
+        <span class="name">Diagnostyka komputerowa</span>
+        <div class="price-bar-track"><div class="price-bar-fill" style="width:40%;"></div></div>
+        <span class="amount">od 80 zł</span>
+      </div>
+      <div class="price-bar-row">
+        <span class="name">Wymiana oleju + filtr</span>
+        <div class="price-bar-track"><div class="price-bar-fill" style="width:75%;"></div></div>
+        <span class="amount">od 150 zł</span>
+      </div>
+      <div class="price-bar-row">
+        <span class="name">Wymiana klocków hamulcowych</span>
+        <div class="price-bar-track"><div class="price-bar-fill" style="width:100%;"></div></div>
+        <span class="amount">od 200 zł</span>
+      </div>
+      <div class="price-bar-row">
+        <span class="name">Sezonowa wymiana opon</span>
+        <div class="price-bar-track"><div class="price-bar-fill" style="width:30%;"></div></div>
+        <span class="amount">od 60 zł</span>
+      </div>
+      <div class="price-bar-row">
+        <span class="name">Geometria kół</span>
+        <div class="price-bar-track"><div class="price-bar-fill" style="width:60%;"></div></div>
+        <span class="amount">od 120 zł</span>
+      </div>
+      <div class="price-bar-row">
+        <span class="name">Przegląd przed badaniem technicznym</span>
+        <div class="price-bar-track"><div class="price-bar-fill" style="width:50%;"></div></div>
+        <span class="amount">od 100 zł</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="kontakt-section" id="kontakt">
+  <div class="wrap">
+    <div class="section-tag" style="color:var(--orange);">Kontakt</div>
+    <h2 class="section-title" style="color:#22262b;">Umów się na przegląd</h2>
+    <div class="kontakt-grid">
+      <div class="map-tile">
+        <div class="pin">📍</div>
+        <h3 style="color:var(--white);">MotoFix</h3>
+        <p>ul. Warsztatowa 5, 00-000 Wrocław<br>Pon–Pt: 8:00–18:00 · Sob: 8:00–13:00</p>
+      </div>
+      <form onsubmit="event.preventDefault(); alert('To jest strona demonstracyjna — formularz nie wysyła wiadomości.');">
+        <input type="text" placeholder="Imię i nazwisko" required>
+        <input type="tel" placeholder="Telefon" required>
+        <input type="text" placeholder="Marka i model auta">
+        <textarea placeholder="Opisz usterkę"></textarea>
+        <button type="submit">Wyślij zgłoszenie</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>MotoFix</strong> — przykładowa strona portfolio, zaprojektowana jako demonstracja usług tworzenia stron internetowych.
+</footer>
+
+</body>
+</html>

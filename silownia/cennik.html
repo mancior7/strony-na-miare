@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cennik — IronCore</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="tel:+48800100900">📞 +48 800 100 900</a>
+    <a href="#">Facebook</a>
+    <a href="#">Instagram</a>
+  </div>
+</div>
+
+<header>
+  <nav>
+    <div class="logo-wrap">
+      <a href="index.html" class="logo">IRON<span>CORE</span></a>
+      <div class="tagline">Siłownia & Fitness</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Start</a></li>
+      <li><a href="oferta.html">Oferta</a></li>
+      <li><a href="cennik.html" class="active">Cennik</a></li>
+      <li><a href="galeria.html">Galeria</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <a href="kontakt.html" class="nav-cta">Karnet próbny</a>
+    <button class="burger">☰</button>
+  </nav>
+</header>
+
+<div class="page-banner">
+  <div class="section-tag">Cennik</div>
+  <h1>Wybierz swój karnet</h1>
+</div>
+
+<section>
+  <div class="plan-tabs">
+    <button class="plan-tab active" data-plan="basic">Podstawowy</button>
+    <button class="plan-tab" data-plan="premium">Premium</button>
+    <button class="plan-tab" data-plan="personal">Personal Trening</button>
+  </div>
+  <div class="plan-panel active" id="panel-basic">
+    <h3 style="text-transform:none;font-family:Georgia,serif;">Podstawowy</h3>
+    <div class="price">99 zł<span>/mc</span></div>
+    <ul><li>Pełny dostęp do siłowni</li><li>Godziny 6:00–22:00</li><li>Szafka na rzeczy osobiste</li></ul>
+    <a href="kontakt.html" class="btn-primary">Wybieram</a>
+  </div>
+  <div class="plan-panel" id="panel-premium">
+    <h3 style="text-transform:none;font-family:Georgia,serif;">Premium</h3>
+    <div class="price">159 zł<span>/mc</span></div>
+    <ul><li>Siłownia + zajęcia grupowe</li><li>Dostęp 24/7</li><li>Konsultacja treningowa gratis</li><li>Ręcznik i dostęp do sauny</li></ul>
+    <a href="kontakt.html" class="btn-primary">Wybieram</a>
+  </div>
+  <div class="plan-panel" id="panel-personal">
+    <h3 style="text-transform:none;font-family:Georgia,serif;">Personal Trening</h3>
+    <div class="price">od 80 zł<span>/sesja</span></div>
+    <ul><li>Indywidualny plan treningowy</li><li>Trener na każdej sesji</li><li>Plan dietetyczny w cenie pakietu</li></ul>
+    <a href="kontakt.html" class="btn-primary">Wybieram</a>
+  </div>
+</section>
+
+<div class="partners-wrap">
+  <section>
+    <div class="section-tag">Partnerzy</div>
+    <h2 class="section-title" style="margin-bottom:0;">Akceptujemy karty sportowe</h2>
+    <div class="partners-row">
+      <div class="partner-badge">MultiSport</div>
+      <div class="partner-badge">Medicover Sport</div>
+      <div class="partner-badge">FitProfit</div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-nav">
+    <a href="index.html">Start</a>
+    <a href="oferta.html">Oferta</a>
+    <a href="cennik.html">Cennik</a>
+    <a href="galeria.html">Galeria</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+  <strong>IronCore</strong> — przykładowa strona portfolio, zaprojektowana jako demonstracja usług tworzenia stron internetowych.
+</footer>
+
+<div class="sticky-bar">
+  <div class="msg">Gotowy na zmianę?<span>Pierwszy trening gratis</span></div>
+  <a href="kontakt.html" class="btn-primary">Odbierz trening próbny</a>
+</div>
+
+<script>
+  document.querySelectorAll('.plan-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      document.querySelectorAll('.plan-tab').forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.plan-panel').forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.plan).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

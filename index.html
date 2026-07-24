@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strony na Miarę — strony internetowe i proste aplikacje</title>
+<style>
+  :root{
+    --bg:#0e1220;
+    --bg-light:#161b2e;
+    --card:#1b2038;
+    --indigo:#4f5fd6;
+    --indigo-light:#7c87e8;
+    --cyan:#3fd6c5;
+    --text:#e7e9f5;
+    --text-dim:#9aa0c0;
+    --border:rgba(255,255,255,0.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    background:var(--bg);color:var(--text);
+    line-height:1.6;
+  }
+  h1,h2,h3{font-weight:700;letter-spacing:-0.5px;}
+  a{text-decoration:none;color:inherit;}
+  .container{max-width:1140px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(14,18,32,0.85);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1140px;margin:0 auto;}
+  .logo{font-size:20px;font-weight:800;color:var(--text);}
+  .logo span{color:var(--cyan);}
+  .nav-links{display:flex;gap:30px;list-style:none;font-size:15px;color:var(--text-dim);}
+  .nav-links a{transition:color .2s;}
+  .nav-links a:hover{color:var(--cyan);}
+  .nav-cta{
+    background:var(--cyan);color:#08201b;padding:10px 22px;border-radius:6px;
+    font-size:14px;font-weight:700;transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--indigo-light);color:#fff;}
+  .burger{display:none;font-size:26px;background:none;border:none;color:var(--text);}
+
+  /* HERO */
+  .hero{
+    padding:120px 24px 130px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(79,95,214,0.35), transparent 45%),
+      radial-gradient(circle at 85% 60%, rgba(63,214,197,0.2), transparent 45%),
+      var(--bg);
+    text-align:center;
+  }
+  .hero-tag{
+    display:inline-block;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;
+    font-size:13px;font-weight:700;margin-bottom:22px;padding:8px 18px;
+    border:1px solid rgba(63,214,197,0.3);border-radius:30px;background:rgba(63,214,197,0.06);
+  }
+  .hero h1{font-size:52px;line-height:1.15;margin-bottom:22px;}
+  .hero h1 span{color:var(--cyan);}
+  .hero p{max-width:600px;margin:0 auto 38px;color:var(--text-dim);font-size:18px;}
+  .hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--cyan);color:#08201b;padding:15px 34px;border-radius:8px;
+    font-size:15px;font-weight:700;transition:all .2s;
+  }
+  .btn-primary:hover{background:var(--indigo-light);color:#fff;transform:translateY(-2px);}
+  .btn-secondary{
+    border:1.5px solid var(--border);color:var(--text);padding:15px 34px;border-radius:8px;
+    font-size:15px;font-weight:600;transition:all .2s;
+  }
+  .btn-secondary:hover{border-color:var(--cyan);color:var(--cyan);}
+
+  /* SECTION GENERIC */
+  section{padding:100px 24px;}
+  .section-tag{
+    text-align:center;color:var(--cyan);letter-spacing:3px;font-size:13px;
+    text-transform:uppercase;margin-bottom:12px;font-weight:700;
+  }
+  .section-title{text-align:center;font-size:36px;margin-bottom:16px;}
+  .section-sub{text-align:center;color:var(--text-dim);max-width:560px;margin:0 auto 56px;font-size:16px;}
+
+  /* OFERTA */
+  .offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;max-width:900px;margin:0 auto;}
+  .offer-card{
+    background:var(--card);border:1px solid var(--border);border-radius:16px;padding:38px 32px;
+    transition:transform .25s, border-color .25s;
+  }
+  .offer-card:hover{transform:translateY(-6px);border-color:var(--indigo-light);}
+  .offer-icon{font-size:34px;margin-bottom:18px;}
+  .offer-card h3{font-size:22px;margin-bottom:12px;}
+  .offer-card p{color:var(--text-dim);font-size:15px;margin-bottom:20px;}
+  .offer-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .offer-card li{font-size:14.5px;color:var(--text-dim);padding-left:22px;position:relative;}
+  .offer-card li::before{content:"✓";position:absolute;left:0;color:var(--cyan);font-weight:700;}
+
+  /* JAK TO DZIALA */
+  .how-wrap{background:var(--bg-light);}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1140px;margin:0 auto;}
+  .step{text-align:center;position:relative;}
+  .step-num{
+    width:46px;height:46px;border-radius:50%;background:var(--card);border:1.5px solid var(--indigo-light);
+    color:var(--cyan);font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;
+    margin:0 auto 18px;
+  }
+  .step h3{font-size:16.5px;margin-bottom:10px;}
+  .step p{font-size:13.5px;color:var(--text-dim);}
+
+  /* PORTFOLIO */
+  .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;max-width:1140px;margin:0 auto;}
+  .portfolio-card{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;
+    transition:transform .25s, border-color .25s;display:block;
+  }
+  .portfolio-card:hover{transform:translateY(-6px);border-color:var(--cyan);}
+  .portfolio-visual{
+    height:140px;display:flex;align-items:center;justify-content:center;font-size:44px;
+  }
+  .portfolio-info{padding:20px;}
+  .portfolio-info h3{font-size:16px;margin-bottom:6px;}
+  .portfolio-info p{font-size:13px;color:var(--text-dim);}
+  .portfolio-tag{
+    display:inline-block;margin-top:12px;font-size:12px;color:var(--cyan);font-weight:700;
+  }
+
+  /* FAQ */
+  .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
+  .faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 26px;cursor:pointer;}
+  .faq-item summary{font-size:16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:"+";font-size:22px;color:var(--cyan);}
+  .faq-item[open] summary::after{content:"−";}
+  .faq-item p{margin-top:14px;color:var(--text-dim);font-size:14.5px;}
+
+  /* KONTAKT */
+  .kontakt-wrap{background:var(--bg-light);}
+  .kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;max-width:1000px;margin:0 auto;}
+  .kontakt-info h3{font-size:22px;margin-bottom:18px;}
+  .kontakt-info p{margin-bottom:14px;font-size:15px;color:var(--text-dim);}
+  .kontakt-info a.email{color:var(--cyan);font-weight:600;}
+  form{display:flex;flex-direction:column;gap:14px;}
+  input, textarea, select{
+    padding:14px 16px;border:1px solid var(--border);border-radius:8px;
+    font-size:15px;font-family:inherit;background:var(--card);color:var(--text);
+  }
+  textarea{resize:vertical;min-height:110px;}
+  form button{
+    background:var(--cyan);color:#08201b;border:none;padding:15px;border-radius:8px;
+    font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;
+  }
+  form button:hover{background:var(--indigo-light);color:#fff;}
+
+  footer{background:var(--bg);color:var(--text-dim);text-align:center;padding:32px 24px;font-size:13px;border-top:1px solid var(--border);}
+  footer strong{color:var(--cyan);}
+
+  @media (max-width:900px){
+    .steps{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:800px){
+    .nav-links{display:none;}
+    .burger{display:block;}
+    .hero h1{font-size:34px;}
+    .offer-grid{grid-template-columns:1fr;}
+    .kontakt-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Strony<span>naMiarę</span></div>
+    <ul class="nav-links">
+      <li><a href="#oferta">Oferta</a></li>
+      <li><a href="#jak-to-dziala">Jak to działa</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#kontakt" class="nav-cta">Wyceń swój projekt</a>
+    <button class="burger">☰</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-tag">Strony i proste aplikacje na zamówienie</div>
+  <h1>Strona albo aplikacja,<br>zrobiona <span>dokładnie tak</span> jak chcesz</h1>
+  <p>Projektuję i buduję strony internetowe oraz proste, przydatne aplikacje webowe dla małych firm i osób prywatnych — szybko, w przejrzystej cenie, bez zbędnych komplikacji.</p>
+  <div class="hero-buttons">
+    <a href="#kontakt" class="btn-primary">Napisz, czego potrzebujesz</a>
+    <a href="#portfolio" class="btn-secondary">Zobacz przykłady</a>
+  </div>
+</section>
+
+<section id="oferta">
+  <div class="section-tag">Oferta</div>
+  <h2 class="section-title">Co mogę dla Ciebie zrobić</h2>
+  <p class="section-sub">Dwie ścieżki — wybierz tę, która pasuje do Twojego pomysłu, albo napisz, a razem ustalimy szczegóły.</p>
+  <div class="offer-grid">
+    <div class="offer-card">
+      <div class="offer-icon">🌐</div>
+      <h3>Strona internetowa</h3>
+      <p>Wizytówka, strona wielostronicowa albo landing page dla Twojej firmy lub projektu.</p>
+      <ul>
+        <li>Indywidualny projekt graficzny</li>
+        <li>Responsywność (telefon, tablet, komputer)</li>
+        <li>Formularz kontaktowy</li>
+        <li>Publikacja na Twojej domenie/hostingu</li>
+      </ul>
+    </div>
+    <div class="offer-card">
+      <div class="offer-icon">🧩</div>
+      <h3>Prosta aplikacja / narzędzie</h3>
+      <p>Niewielkie, użyteczne narzędzia webowe skrojone pod konkretną potrzebę — bez zbędnej złożoności.</p>
+      <ul>
+        <li>Kalkulatory, generatory, mini-bazy danych</li>
+        <li>Aplikacje PWA działające offline</li>
+        <li>Proste integracje (np. e-mail, arkusze)</li>
+        <li>Czytelny, prosty interfejs</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="how-wrap">
+  <section id="jak-to-dziala">
+    <div class="section-tag">Proces</div>
+    <h2 class="section-title">Jak to działa</h2>
+    <p class="section-sub">Prosty proces od pomysłu do gotowej strony — na bieżąco wiesz, na jakim etapie jesteśmy.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Opisujesz pomysł</h3>
+        <p>Wypełniasz formularz poniżej albo piszesz maila ze szczegółami: co ma zawierać strona, jak ma wyglądać, jakie masz przykłady.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Wycena i termin</h3>
+        <p>Odpisuję z wyceną, zakresem prac i szacowanym terminem realizacji.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Podgląd do akceptacji</h3>
+        <p>Buduję stronę i wysyłam link do podglądu — oglądasz gotowy efekt zanim cokolwiek trafi na Twoją domenę.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Poprawki i wdrożenie</h3>
+        <p>Zgłaszasz uwagi (2 rundy poprawek w cenie), po akceptacji wdrażam stronę na Twoim hostingu.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="portfolio">
+  <div class="section-tag">Portfolio</div>
+  <h2 class="section-title">Przykładowe realizacje</h2>
+  <p class="section-sub">Kilka przykładów pokazujących styl i zakres — Twoja strona może wyglądać zupełnie inaczej, w 100% dopasowana do Twojej marki.</p>
+  <div class="portfolio-grid">
+    <a class="portfolio-card" href="salon-fryzjerski/index.html" target="_blank">
+      <div class="portfolio-visual" style="background-image:url('_assets/salon/interior-1.jpg');background-size:cover;background-position:center;"></div>
+      <div class="portfolio-info">
+        <h3>Salon Bella</h3>
+        <p>Strona wizytówka salonu fryzjerskiego</p>
+        <span class="portfolio-tag">Zobacz stronę →</span>
+      </div>
+    </a>
+    <a class="portfolio-card" href="restauracja/index.html" target="_blank">
+      <div class="portfolio-visual" style="background-image:url('_assets/restaurant/interior-2.jpg');background-size:cover;background-position:center;"></div>
+      <div class="portfolio-info">
+        <h3>Trattoria Verde</h3>
+        <p>Strona restauracji z menu i rezerwacją</p>
+        <span class="portfolio-tag">Zobacz stronę →</span>
+      </div>
+    </a>
+    <a class="portfolio-card" href="warsztat-samochodowy/index.html" target="_blank">
+      <div class="portfolio-visual" style="background-image:url('_assets/warsztat/interior-1.jpg');background-size:cover;background-position:center;"></div>
+      <div class="portfolio-info">
+        <h3>MotoFix</h3>
+        <p>Strona warsztatu samochodowego</p>
+        <span class="portfolio-tag">Zobacz stronę →</span>
+      </div>
+    </a>
+    <a class="portfolio-card" href="https://mancior7.github.io/slowka-app/" target="_blank">
+      <div class="portfolio-visual" style="background:#f5f0e6;">
+        <svg viewBox="0 0 512 512" width="64" height="64">
+          <rect width="512" height="512" fill="#f5f0e6"/>
+          <g stroke="#2f6f5e" stroke-width="16" stroke-linecap="round" fill="none">
+            <path d="M132 168 V132 H168"/>
+            <path d="M380 168 V132 H344"/>
+            <path d="M132 344 V380 H168"/>
+            <path d="M380 344 V380 H344"/>
+          </g>
+          <rect x="176" y="220" width="160" height="72" rx="12" fill="#2f6f5e"/>
+          <rect x="196" y="242" width="90" height="10" rx="5" fill="#f5f0e6"/>
+          <rect x="196" y="262" width="60" height="10" rx="5" fill="#f5f0e6" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="portfolio-info">
+        <h3>WordSnap</h3>
+        <p>Aplikacja PWA do nauki słówek ze zdjęcia</p>
+        <span class="portfolio-tag">Otwórz aplikację →</span>
+      </div>
+    </a>
+    <a class="portfolio-card" href="silownia/index.html" target="_blank">
+      <div class="portfolio-visual" style="background-image:url('_assets/gym/action-1-hero.jpg');background-size:cover;background-position:center;"></div>
+      <div class="portfolio-info">
+        <h3>IronCore</h3>
+        <p>Strona siłowni z cennikiem karnetów</p>
+        <span class="portfolio-tag">Zobacz stronę →</span>
+      </div>
+    </a>
+    <a class="portfolio-card" href="sklep-odziezowy/index.html" target="_blank">
+      <div class="portfolio-visual" style="background-image:url('_assets/fashion/hero-campaign.jpg');background-size:cover;background-position:center top;"></div>
+      <div class="portfolio-info">
+        <h3>URBIS</h3>
+        <p>Sklep odzieżowy online z animacjami produktów</p>
+        <span class="portfolio-tag">Zobacz stronę →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="section-tag">FAQ</div>
+  <h2 class="section-title">Najczęstsze pytania</h2>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Ile trwa realizacja?</summary>
+      <p>Prosta wizytówka: 3–7 dni roboczych. Strona wielostronicowa lub aplikacja: 1–3 tygodnie, w zależności od zakresu. Dokładny termin ustalamy przed startem.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Co muszę przygotować?</summary>
+      <p>Wystarczy opis tego, co ma się znaleźć na stronie (teksty, zdjęcia, logo jeśli masz) oraz przykłady stron, które Ci się podobają. Jeśli czegoś brakuje — pomogę to uzupełnić.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Co jeśli po wysłaniu strony chcę coś poprawić?</summary>
+      <p>W cenie są 2 rundy poprawek. Wysyłam link do podglądu przed wdrożeniem, więc oglądasz gotowy efekt i zgłaszasz uwagi zanim cokolwiek trafi na Twoją domenę. Dodatkowe zmiany poza tym zakresem rozliczane są godzinowo.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Czy zajmujesz się też hostingiem i domeną?</summary>
+      <p>Tak, mogę pomóc dobrać i skonfigurować hosting oraz domenę, albo wdrożyć stronę na Twoim istniejącym hostingu — jak wygodniej.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Jak wygląda płatność?</summary>
+      <p>Zwykle zaliczka na start (30–50%) i reszta po akceptacji gotowej strony, przed finalnym wdrożeniem.</p>
+    </details>
+  </div>
+</section>
+
+<div class="kontakt-wrap">
+  <section id="kontakt">
+    <div class="section-tag">Kontakt</div>
+    <h2 class="section-title">Opisz swój projekt</h2>
+    <div class="kontakt-grid">
+      <div class="kontakt-info">
+        <h3>Napisz do mnie</h3>
+        <p>Opisz w mailu lub formularzu, jaką stronę albo aplikację chcesz mieć — im więcej szczegółów, tym szybciej dostaniesz konkretną wycenę.</p>
+        <p>✉️ <a class="email" href="mailto:brozyna941+strony@gmail.com">brozyna941+strony@gmail.com</a></p>
+        <p>⏱️ Odpowiadam zwykle w ciągu 24–48h</p>
+      </div>
+      <form id="kontakt-form" action="https://formsubmit.co/brozyna941@gmail.com" method="POST">
+        <input type="text" name="name" placeholder="Imię i nazwisko / nazwa firmy" required>
+        <input type="email" name="email" placeholder="Adres e-mail" required>
+        <select name="rodzaj" required>
+          <option value="" disabled selected>Czego potrzebujesz?</option>
+          <option>Strona wizytówka</option>
+          <option>Strona wielostronicowa</option>
+          <option>Prosta aplikacja / narzędzie</option>
+          <option>Nie jestem pewien / pewna</option>
+        </select>
+        <textarea name="message" placeholder="Opisz, jak ma wyglądać i działać Twoja strona/aplikacja" required></textarea>
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_subject" value="Nowe zapytanie ze strony Strony na Miarę">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <button type="submit">Wyślij zapytanie</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <strong>Strony na Miarę</strong> — strony internetowe i proste aplikacje webowe na zamówienie.
+</footer>
+
+</body>
+</html>

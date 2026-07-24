@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt — IronCore</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="tel:+48800100900">📞 +48 800 100 900</a>
+    <a href="#">Facebook</a>
+    <a href="#">Instagram</a>
+  </div>
+</div>
+
+<header>
+  <nav>
+    <div class="logo-wrap">
+      <a href="index.html" class="logo">IRON<span>CORE</span></a>
+      <div class="tagline">Siłownia & Fitness</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Start</a></li>
+      <li><a href="oferta.html">Oferta</a></li>
+      <li><a href="cennik.html">Cennik</a></li>
+      <li><a href="galeria.html">Galeria</a></li>
+      <li><a href="kontakt.html" class="active">Kontakt</a></li>
+    </ul>
+    <a href="kontakt.html" class="nav-cta">Karnet próbny</a>
+    <button class="burger">☰</button>
+  </nav>
+</header>
+
+<div class="page-banner">
+  <div class="section-tag">Kontakt</div>
+  <h1>Odbierz trening próbny</h1>
+</div>
+
+<section>
+  <div class="kontakt-grid">
+    <div class="kontakt-info">
+      <h3>IronCore</h3>
+      <p>📍 ul. Sportowa 21, 00-000 Poznań</p>
+      <p>📞 +48 800 100 900</p>
+      <p>✉️ kontakt@ironcore.pl</p>
+      <p>🕐 Pon–Pt: 6:00–23:00<br>Sob–Nd: 8:00–20:00</p>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('To jest strona demonstracyjna — formularz nie wysyła wiadomości.');">
+      <input type="text" placeholder="Imię i nazwisko" required>
+      <input type="tel" placeholder="Telefon" required>
+      <textarea placeholder="Który karnet Cię interesuje?"></textarea>
+      <button type="submit">Wyślij zgłoszenie</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-nav">
+    <a href="index.html">Start</a>
+    <a href="oferta.html">Oferta</a>
+    <a href="cennik.html">Cennik</a>
+    <a href="galeria.html">Galeria</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+  <strong>IronCore</strong> — przykładowa strona portfolio, zaprojektowana jako demonstracja usług tworzenia stron internetowych.
+</footer>
+
+<div class="sticky-bar">
+  <div class="msg">Gotowy na zmianę?<span>Pierwszy trening gratis</span></div>
+  <a href="kontakt.html" class="btn-primary">Odbierz trening próbny</a>
+</div>
+
+</body>
+</html>
