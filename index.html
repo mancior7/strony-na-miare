@@ -377,8 +377,8 @@
         <input type="hidden" name="_subject" value="Nowe zapytanie ze strony Strony na Miarę">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://mancior7.github.io/strony-na-miare/#kontakt">
         <button type="submit">Wyślij zapytanie</button>
+        <p id="form-status" style="font-size:14px;margin-top:6px;display:none;"></p>
       </form>
     </div>
   </section>
@@ -387,6 +387,38 @@
 <footer>
   <strong>Strony na Miarę</strong> — strony internetowe i proste aplikacje webowe na zamówienie.
 </footer>
+
+<script>
+  document.getElementById('kontakt-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var form = e.target;
+    var status = document.getElementById('form-status');
+    var button = form.querySelector('button[type="submit"]');
+    button.disabled = true;
+    button.textContent = 'Wysyłanie...';
+    fetch('https://formsubmit.co/ajax/brozyna941@gmail.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      status.style.display = 'block';
+      status.style.color = 'var(--cyan)';
+      status.textContent = 'Dziękuję! Zapytanie zostało wysłane — odpowiem w ciągu 24–48h.';
+      form.reset();
+    })
+    .catch(function(){
+      status.style.display = 'block';
+      status.style.color = '#ff6b6b';
+      status.textContent = 'Coś poszło nie tak. Spróbuj ponownie albo napisz bezpośrednio na maila.';
+    })
+    .finally(function(){
+      button.disabled = false;
+      button.textContent = 'Wyślij zapytanie';
+    });
+  });
+</script>
 
 </body>
 </html>
