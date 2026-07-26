@@ -59,9 +59,9 @@
 
   .b-visual{
     grid-column:span 2;grid-row:span 2;
-    background:linear-gradient(135deg,var(--orange),#a8391a);
-    align-items:center;justify-content:center;font-size:80px;color:#fff;
+    position:relative;overflow:hidden;padding:0;
   }
+  .b-visual img{width:100%;height:100%;object-fit:cover;}
 
   .b-stat{background:var(--asphalt-light);color:var(--white);text-align:left;}
   .b-stat b{font-size:26px;color:var(--orange-light);display:block;}
@@ -72,8 +72,11 @@
   .b-quick span{font-size:13px;font-weight:700;}
 
   .b-service-big{
-    grid-column:span 2;background:var(--asphalt);color:var(--white);
+    grid-column:span 2;color:var(--white);position:relative;overflow:hidden;
+    background-size:cover;background-position:center;
   }
+  .b-service-big::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(28,31,36,0.92) 40%, rgba(28,31,36,0.5) 100%);}
+  .b-service-big .ic, .b-service-big h3, .b-service-big p{position:relative;z-index:1;}
   .b-service-big .ic{font-size:26px;margin-bottom:10px;}
   .b-service-big h3{font-size:17px;margin-bottom:8px;}
   .b-service-big p{font-size:13.5px;color:var(--grey);}
@@ -98,9 +101,12 @@
   .kontakt-section{padding:80px 24px;}
   .kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:1180px;margin:0 auto;}
   .map-tile{
-    background:var(--asphalt-light);border-radius:12px;min-height:280px;display:flex;flex-direction:column;
+    position:relative;overflow:hidden;border-radius:12px;min-height:280px;display:flex;flex-direction:column;
     align-items:center;justify-content:center;color:var(--white);gap:10px;padding:24px;text-align:center;
+    background-size:cover;background-position:center;
   }
+  .map-tile::before{content:"";position:absolute;inset:0;background:rgba(28,31,36,0.72);}
+  .map-tile .pin, .map-tile h3, .map-tile p{position:relative;z-index:1;}
   .map-tile .pin{font-size:40px;}
   .map-tile p{color:var(--grey);font-size:14px;}
   form{background:#e9ebee;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:12px;}
@@ -147,14 +153,14 @@
       <p>Diagnostyka, naprawy mechaniczne, wymiana opon i przeglądy — szybko i rzetelnie, bez zbędnego czekania.</p>
       <a href="#kontakt" class="btn-primary">Umów wizytę</a>
     </div>
-    <div class="tile b-visual">🔧</div>
+    <div class="tile b-visual"><img src="../_assets/warsztat/action-1-hero.jpg" alt="Mechanik naprawiający silnik"></div>
 
     <div class="tile b-stat"><b>12 lat</b><span>doświadczenia na rynku</span></div>
     <div class="tile b-stat"><b>3400+</b><span>napraw wykonanych</span></div>
     <div class="tile b-quick"><div class="ic">🔍</div><span>Diagnostyka</span></div>
     <div class="tile b-stat"><b>4.9★</b><span>średnia ocena klientów</span></div>
 
-    <div class="tile b-service-big">
+    <div class="tile b-service-big" style="background-image:url('../_assets/warsztat/action-2.jpg');">
       <div class="ic">⚙️</div>
       <h3>Mechanika ogólna</h3>
       <p>Naprawy silnika, zawieszenia, układu hamulcowego i sprzęgła — od drobnych usterek po poważne naprawy.</p>
@@ -216,7 +222,7 @@
     <div class="section-tag" style="color:var(--orange);">Kontakt</div>
     <h2 class="section-title" style="color:#22262b;">Umów się na przegląd</h2>
     <div class="kontakt-grid">
-      <div class="map-tile">
+      <div class="map-tile" style="background-image:url('../_assets/warsztat/interior-1.jpg');">
         <div class="pin">📍</div>
         <h3 style="color:var(--white);">MotoFix</h3>
         <p>ul. Warsztatowa 5, 00-000 Wrocław<br>Pon–Pt: 8:00–18:00 · Sob: 8:00–13:00</p>
