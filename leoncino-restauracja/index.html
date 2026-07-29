@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leoncino nad Jeziorem Tarnobrzeskim</title>
+<style>
+  :root{
+    --night:#1b1a17;
+    --night-light:#241f1c;
+    --cream:#f5efe6;
+    --olive:#7c8a5e;
+    --terracotta:#c1623d;
+    --gold:#cdae6b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI', system-ui, sans-serif;background:var(--night);color:var(--cream);line-height:1.65;}
+  h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:400;}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  .demo-banner{background:var(--terracotta);color:#fff;text-align:center;padding:11px 20px;font-size:13.5px;}
+  .demo-banner strong{text-decoration:underline;}
+
+  header{position:sticky;top:0;z-index:100;background:rgba(27,26,23,0.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(205,174,107,0.15);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:10px;}
+  .logo{font-family:Georgia,serif;font-size:20px;letter-spacing:1px;color:var(--gold);}
+  .nav-cta{background:var(--terracotta);color:#fff;padding:10px 20px;border-radius:2px;font-size:13.5px;}
+
+  .hero{min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:90px 24px;}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg, rgba(27,26,23,0.5) 0%, rgba(27,26,23,0.78) 100%);}
+  .hero-inner{position:relative;z-index:2;max-width:620px;}
+  .hero-tag{color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-size:12.5px;margin-bottom:18px;}
+  .hero h1{font-size:44px;line-height:1.2;margin-bottom:20px;}
+  .hero p{color:#f0ebe2;font-size:16px;margin-bottom:30px;}
+  .hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn-primary{background:var(--terracotta);color:#fff;padding:14px 30px;border-radius:2px;font-size:14px;letter-spacing:0.5px;}
+  .btn-primary:hover{background:var(--gold);color:var(--night);}
+  .btn-ghost{border:1.5px solid var(--gold);color:var(--gold);padding:14px 30px;border-radius:2px;font-size:14px;letter-spacing:0.5px;}
+  .btn-ghost:hover{background:var(--gold);color:var(--night);}
+
+  .stat-strip{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;padding:30px 24px;background:var(--night-light);}
+  .stat-strip .stat b{font-size:24px;color:var(--gold);display:block;font-family:Georgia,serif;}
+  .stat-strip .stat span{font-size:12px;color:#a8a091;text-transform:uppercase;letter-spacing:0.5px;}
+
+  section{padding:70px 24px;}
+  .section-tag{color:var(--gold);letter-spacing:3px;font-size:12.5px;text-transform:uppercase;margin-bottom:10px;text-align:center;}
+  .section-title{font-size:28px;margin-bottom:36px;text-align:center;}
+
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;margin:0 auto;}
+  .gallery-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;}
+
+  .menu-note{max-width:700px;margin:0 auto;text-align:center;color:#cfc7ba;font-size:14px;background:var(--night-light);padding:24px;border-radius:6px;}
+  .menu-cat{text-align:center;color:var(--gold);font-size:16px;background:var(--night-light);padding:18px;border-radius:6px;font-family:Georgia,serif;}
+
+  .kontakt-band{background:var(--terracotta);color:#fff;}
+  .kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:900px;margin:0 auto;}
+  .kontakt-info h3{font-size:19px;margin-bottom:16px;}
+  .kontakt-info a.maps-link{color:#fff;text-decoration:underline;font-weight:600;}
+  .hours-list{background:rgba(0,0,0,0.15);border-radius:8px;padding:16px 18px;margin:16px 0;}
+  .hours-row{display:flex;justify-content:space-between;padding:6px 0;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.15);}
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row.closed span:last-child{opacity:0.75;}
+  .call-btn{display:inline-block;background:var(--night);color:var(--gold);padding:13px 26px;border-radius:2px;font-size:14px;font-weight:600;margin-top:6px;}
+  .call-btn:hover{background:#000;}
+  form{display:flex;flex-direction:column;gap:12px;}
+  input, textarea{padding:13px 16px;border:1px solid rgba(255,255,255,0.3);border-radius:2px;font-size:14.5px;font-family:inherit;background:rgba(0,0,0,0.15);color:#fff;}
+  input::placeholder, textarea::placeholder{color:rgba(255,255,255,0.65);}
+  textarea{resize:vertical;min-height:80px;}
+  form button{background:var(--night);color:var(--gold);border:none;padding:13px;border-radius:2px;font-size:14.5px;font-weight:700;cursor:pointer;}
+  form button:hover{background:#000;}
+
+  footer{background:var(--night);color:#a8a091;text-align:center;padding:24px 24px;font-size:12.5px;}
+
+  @media (max-width:800px){
+    .hero h1{font-size:32px;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .kontakt-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Wersja demonstracyjna przygotowana specjalnie dla <strong>Leoncino nad Jeziorem Tarnobrzeskim</strong> — projekt do akceptacji, treści i zdjęcia zostaną dopasowane po rozmowie</div>
+
+<header>
+  <nav>
+    <div class="logo">Leoncino</div>
+    <a href="#kontakt" class="nav-cta">Zarezerwuj stolik</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <img src="../_assets/restaurant/interior-5-hero.jpg" alt="Wnętrze restauracji Leoncino">
+  <div class="hero-inner">
+    <div class="hero-tag">Twoje miejsce do odpoczynku nad jeziorem</div>
+    <h1>Leoncino nad Jeziorem Tarnobrzeskim</h1>
+    <p>Włoska pizza na włoskich składnikach, dobre drinki i cisza nad wodą — a czasem potańcówka pod gwiazdami.</p>
+    <div class="hero-buttons">
+      <a href="tel:730535314" class="btn-primary">📞 Zadzwoń: 730 535 314</a>
+      <a href="#kontakt" class="btn-ghost">Zobacz kontakt</a>
+    </div>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="stat"><b>4.7★</b><span>235 opinii w Google</span></div>
+  <div class="stat"><b>Żeglarska 2B</b><span>Tarnobrzeg</span></div>
+  <div class="stat"><b>20–40 zł</b><span>za osobę</span></div>
+</div>
+
+<section id="galeria">
+  <div class="section-tag">Atmosfera</div>
+  <h2 class="section-title">Zobacz nasze wnętrze</h2>
+  <div class="gallery-grid">
+    <img src="../_assets/restaurant/interior-2.jpg" alt="Sala restauracyjna">
+    <img src="../_assets/restaurant/interior-4.jpg" alt="Wnętrze przy oknie">
+    <img src="../_assets/restaurant/food-1.jpg" alt="Danie z karty">
+  </div>
+</section>
+
+<section>
+  <div class="section-tag">Menu</div>
+  <h2 class="section-title">Karta dań</h2>
+  <div class="gallery-grid" style="margin-bottom:26px;">
+    <div class="menu-cat">🍕 Pizza</div>
+    <div class="menu-cat">🍹 Drinki</div>
+    <div class="menu-cat">🍰 Coś na słodko</div>
+  </div>
+  <div class="menu-note">To kategorie z Waszego Instagrama — tutaj pojawią się konkretne pozycje, ceny i zdjęcia potraw, jak tylko przekażecie pełne menu.</div>
+</section>
+
+<div class="kontakt-band" id="kontakt">
+  <section>
+    <div class="section-tag" style="color:rgba(255,255,255,0.85);">Kontakt</div>
+    <h2 class="section-title" style="color:#fff;">Zarezerwuj stolik</h2>
+    <div class="kontakt-grid">
+      <div class="kontakt-info">
+        <h3>Leoncino nad Jeziorem Tarnobrzeskim</h3>
+        <p>📍 <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Leoncino+nad+Jeziorem+Tarnobrzeskim" target="_blank">Żeglarska 2B, Tarnobrzeg</a></p>
+        <p>✉️ leoncinotarnobrzeg@gmail.com</p>
+        <div class="hours-list">
+          <div class="hours-row closed"><span>Poniedziałek</span><span>Zamknięte</span></div>
+          <div class="hours-row"><span>Wtorek</span><span>12:00–19:00</span></div>
+          <div class="hours-row"><span>Środa</span><span>12:00–19:00</span></div>
+          <div class="hours-row"><span>Czwartek</span><span>12:00–19:00</span></div>
+          <div class="hours-row"><span>Piątek</span><span>12:00–20:00</span></div>
+          <div class="hours-row"><span>Sobota</span><span>12:00–22:00</span></div>
+          <div class="hours-row"><span>Niedziela</span><span>12:00–20:30</span></div>
+        </div>
+        <a href="tel:730535314" class="call-btn">📞 Zadzwoń: 730 535 314</a>
+      </div>
+      <form onsubmit="event.preventDefault(); alert('To jest wersja demonstracyjna — formularz nie wysyła jeszcze wiadomości.');">
+        <input type="text" placeholder="Imię i nazwisko" required>
+        <input type="tel" placeholder="Telefon" required>
+        <input type="text" placeholder="Liczba osób / termin">
+        <textarea placeholder="Dodatkowe uwagi"></textarea>
+        <button type="submit">Zarezerwuj</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<footer>
+  Projekt strony przygotowany przez Strony na Miarę. Zdjęcia i menu zostaną dopasowane po akceptacji.
+</footer>
+
+</body>
+</html>
