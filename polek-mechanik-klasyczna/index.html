@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobilna Mechanika Pojazdowa — Tomasz Polek</title>
+<style>
+  :root{
+    --asphalt:#1c1f24;
+    --asphalt-light:#2a2e35;
+    --orange:#e8622c;
+    --orange-light:#f28c5e;
+    --white:#f2f3f5;
+    --grey:#9aa2ad;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI', system-ui, sans-serif;background:var(--white);color:#22262b;line-height:1.5;}
+  h1,h2,h3{font-weight:800;letter-spacing:-0.5px;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  .demo-banner{background:var(--orange);color:#fff;text-align:center;padding:11px 20px;font-size:13.5px;}
+  .demo-banner strong{text-decoration:underline;}
+
+  header{background:var(--asphalt);color:var(--white);display:flex;align-items:center;justify-content:space-between;padding:16px 24px;flex-wrap:wrap;gap:10px;}
+  .logo{font-size:19px;font-weight:900;letter-spacing:0.5px;}
+  .logo span{color:var(--orange);}
+  .nav-cta{background:var(--orange);color:#fff;padding:9px 18px;border-radius:4px;font-size:13.5px;font-weight:700;}
+
+  main{padding:36px 24px;}
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:130px;gap:14px;max-width:1180px;margin:0 auto 60px;}
+  .tile{border-radius:12px;padding:24px;display:flex;flex-direction:column;justify-content:center;}
+
+  .b-headline{grid-column:span 2;grid-row:span 2;background:var(--asphalt);color:var(--white);justify-content:flex-end;}
+  .b-headline .tag{color:var(--orange-light);font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+  .b-headline h1{font-size:28px;line-height:1.25;margin-bottom:14px;}
+  .b-headline p{color:var(--grey);font-size:14px;margin-bottom:18px;max-width:340px;}
+  .btn-primary{display:inline-block;background:var(--orange);color:#fff;padding:12px 26px;border-radius:6px;font-size:14px;font-weight:700;width:fit-content;transition:background .2s;}
+  .btn-primary:hover{background:var(--orange-light);}
+
+  .b-visual{grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;padding:0;}
+  .b-visual img{width:100%;height:100%;object-fit:cover;}
+
+  .b-stat{background:var(--asphalt-light);color:var(--white);text-align:left;}
+  .b-stat b{font-size:24px;color:var(--orange-light);display:block;}
+  .b-stat span{font-size:12.5px;color:var(--grey);}
+
+  .b-service{background:#e9ebee;}
+  .b-service .ic{font-size:22px;margin-bottom:8px;}
+  .b-service h3{font-size:14.5px;margin-bottom:4px;}
+  .b-service p{font-size:12px;color:#5a6270;}
+
+  section{padding:70px 24px;}
+  .section-tag{color:var(--orange);letter-spacing:3px;font-size:12px;text-transform:uppercase;font-weight:700;margin-bottom:10px;text-align:center;}
+  .section-title{font-size:28px;margin-bottom:40px;text-align:center;}
+
+  .services-full{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:0 auto;}
+  .service-card{background:#e9ebee;border-radius:10px;padding:24px;text-align:center;}
+  .service-card .ic{font-size:26px;margin-bottom:10px;}
+  .service-card h3{font-size:15px;}
+
+  .kontakt-section{background:var(--asphalt);color:var(--white);padding:70px 24px;}
+  .kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1000px;margin:0 auto;}
+  .kontakt-info h3{font-size:20px;margin-bottom:16px;}
+  .kontakt-info a.maps-link{color:var(--orange-light);text-decoration:underline;}
+  .hours-list{background:var(--asphalt-light);border-radius:10px;padding:16px 18px;margin:16px 0;}
+  .hours-row{display:flex;justify-content:space-between;padding:6px 0;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row span:first-child{color:var(--grey);}
+  .hours-row span:last-child{font-weight:600;}
+  .call-btn{display:inline-block;background:var(--orange);color:#fff;padding:14px 28px;border-radius:6px;font-size:15px;font-weight:700;margin-top:6px;}
+  .call-btn:hover{background:var(--orange-light);}
+  form{background:var(--asphalt-light);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:12px;}
+  input, textarea{padding:13px 16px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;font-size:14.5px;font-family:inherit;background:var(--asphalt);color:#fff;}
+  textarea{resize:vertical;min-height:80px;}
+  form button{background:var(--orange);color:#fff;border:none;padding:13px;border-radius:6px;font-size:14.5px;font-weight:700;cursor:pointer;}
+  form button:hover{background:var(--orange-light);}
+
+  footer{background:var(--asphalt);color:var(--grey);text-align:center;padding:24px 24px;font-size:12.5px;border-top:1px solid rgba(255,255,255,0.08);}
+
+  @media (max-width:850px){
+    .bento{display:flex;flex-direction:column;}
+    .b-headline, .b-visual{grid-column:unset;grid-row:unset;}
+    .services-full{grid-template-columns:1fr 1fr;}
+    .kontakt-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Wersja demonstracyjna dla <strong>Mobilnej Mechaniki Pojazdowej — Tomasz Polek</strong> — wariant klasyczny</div>
+
+<header>
+  <div class="logo">POLEK<span>MECHANIKA</span></div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <span style="font-size:14px;color:var(--grey);">576 121 949</span>
+    <a href="tel:576121949" class="nav-cta">📞 Zadzwoń</a>
+  </div>
+</header>
+
+<main>
+  <div class="bento">
+    <div class="tile b-headline">
+      <div class="tag">Mobilna mechanika pojazdowa</div>
+      <h1>Dbamy o Twój samochód, gdziekolwiek jesteś</h1>
+      <p>Diagnostyka, naprawa elektryki, tuning mechaniczny i dowóz paliwa — przyjeżdżam do Ciebie, bez holowania i czekania w warsztacie.</p>
+      <a href="tel:576121949" class="btn-primary">Zadzwoń: 576 121 949</a>
+    </div>
+    <div class="tile b-visual"><img src="../_assets/warsztat/action-1-hero.jpg" alt="Naprawa samochodu na miejscu"></div>
+
+    <div class="tile b-stat"><b>4.8★</b><span>32 opinie w Google</span></div>
+    <div class="tile b-stat"><b>Tarnobrzeg</b><span>i okolice</span></div>
+    <div class="tile b-service"><div class="ic">🚗</div><h3>Dojazd na miejsce</h3><p>Nie musisz nigdzie jechać</p></div>
+    <div class="tile b-service"><div class="ic">⛽</div><h3>Dowóz paliwa</h3><p>Zostałeś bez paliwa? Przyjadę</p></div>
+  </div>
+</main>
+
+<section id="uslugi">
+  <div class="section-tag">Usługi</div>
+  <h2 class="section-title">Czym się zajmuję</h2>
+  <div class="services-full">
+    <div class="service-card"><div class="ic">🔧</div><h3>Mobilna naprawa samochodu</h3></div>
+    <div class="service-card"><div class="ic">🛞</div><h3>Konserwacja podwozia</h3></div>
+    <div class="service-card"><div class="ic">🔍</div><h3>Diagnostyka komputerowa</h3></div>
+    <div class="service-card"><div class="ic">⚡</div><h3>Naprawa elektryki</h3></div>
+    <div class="service-card"><div class="ic">🏎️</div><h3>Tuning mechaniczny</h3></div>
+    <div class="service-card"><div class="ic">🚙</div><h3>Pomoc w zakupie pojazdu</h3></div>
+  </div>
+</section>
+
+<div class="kontakt-section" id="kontakt">
+  <div class="wrap">
+    <div class="section-tag" style="color:var(--orange-light);">Kontakt</div>
+    <h2 class="section-title" style="color:#fff;">Umów wizytę</h2>
+    <div class="kontakt-grid">
+      <div class="kontakt-info">
+        <h3>Tomasz Polek — Mobilna Mechanika Pojazdowa</h3>
+        <p>📍 <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Mobilna+Mechanika+Pojazdowa+Tomasz+Polek+Tarnobrzeg" target="_blank">Turystyczna 10, Tarnobrzeg</a></p>
+        <div class="hours-list">
+          <div class="hours-row"><span>Poniedziałek – Sobota</span><span>7:00–20:00</span></div>
+          <div class="hours-row"><span>Niedziela</span><span>Zamknięte</span></div>
+        </div>
+        <a href="tel:576121949" class="call-btn">📞 Zadzwoń: 576 121 949</a>
+      </div>
+      <form onsubmit="event.preventDefault(); alert('To jest wersja demonstracyjna — formularz nie wysyła jeszcze wiadomości.');">
+        <p style="margin:0 0 4px;font-size:14px;color:var(--grey);">Wolisz, żebym oddzwonił? Zostaw numer:</p>
+        <input type="text" placeholder="Imię i nazwisko" required>
+        <input type="tel" placeholder="Telefon" required>
+        <textarea placeholder="Opisz usterkę (opcjonalnie)"></textarea>
+        <button type="submit">Zostaw numer — oddzwonię</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Projekt strony przygotowany przez Strony na Miarę. Zdjęcia i treści zostaną dopasowane po akceptacji.
+</footer>
+
+</body>
+</html>
