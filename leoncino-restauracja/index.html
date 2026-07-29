@@ -56,12 +56,6 @@
   .gallery-scroll::-webkit-scrollbar-thumb{background:var(--gold);border-radius:10px;}
   .gallery-scroll img{scroll-snap-align:start;flex:0 0 260px;aspect-ratio:3/4;object-fit:cover;border-radius:4px;}
 
-  /* WYRÓŻNIK — full-bleed banner quote */
-  .highlight-banner{position:relative;padding:100px 24px;text-align:center;overflow:hidden;}
-  .highlight-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
-  .highlight-banner::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(20,19,18,0.55);}
-  .highlight-banner blockquote{position:relative;z-index:2;font-family:Georgia,serif;font-size:26px;max-width:640px;margin:0 auto;color:#fff;}
-
   /* MENU — photo category cards */
   .menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1000px;margin:0 auto 20px;}
   .menu-card{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:3/4;}
@@ -97,7 +91,6 @@
     .hero h1{font-size:30px;}
     .menu-grid{grid-template-columns:repeat(2,1fr);}
     .kontakt-grid{grid-template-columns:1fr;}
-    .highlight-banner blockquote{font-size:21px;}
   }
 </style>
 </head>
@@ -143,11 +136,6 @@
     <img src="../_assets/leoncino/pizza-white.jpg" alt="Pizza z pesto i czerwoną cebulą">
   </div>
 </section>
-
-<div class="highlight-banner">
-  <img src="../_assets/leoncino/pizza-spicy.jpg" alt="Pizza z Leoncino">
-  <blockquote>„Ciasto naciągane ręcznie, świeże składniki i widok na jezioro — to nasza wersja włoskiego lata."</blockquote>
-</div>
 
 <section>
   <div class="section-tag">Menu</div>
